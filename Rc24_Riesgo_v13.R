@@ -49,6 +49,7 @@ library(gifski)
 # set up ----
 
 setwd("C:/010_r/project_sociohydro_abm_flood_risk_r_model_integrated") # working directory
+#setwd("C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/") # working directory
 
 # series de caudal maximo anual ---
 
@@ -90,6 +91,10 @@ floodserie <- map(serie, function(x) {
 floodserie_sp <- load_flood_raster_list(serie, "Rcode_Resampling/OutputResampling/RasterDepth_SinProy10m_v1") # Load raster sin proyecto
 floodserie_cp <- load_flood_raster_list(serie, "Rcode_Resampling/OutputResampling/RasterDepth_ConProy10m_v3") # Load raster con proyecto
 
+#floodserie_sp <- load_flood_raster_list(serie, "C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1") # Load raster sin proyecto
+#floodserie_cp <- load_flood_raster_list(serie, "C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_Resampling/OutputsResampling/RasterDepth_ConProy10m_v3") # Load raster con proyecto
+
+
 # study area
 
 # poligonos de uso de suelo
@@ -102,6 +107,7 @@ development_initial <- terra::aggregate(buffer(area_urban, 0)) ; #plot(developme
 
 {
 flood_zone_rst <- load_flood_raster_list(100, "Rcode_Resampling/OutputResampling/RasterDepth_SinProy10m_v1")
+#flood_zone_rst <- load_flood_raster_list(100, "C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1")
 flood_zone_rst <- flood_zone_rst[[1]]
 flood_zone_rst[] <- ifelse(flood_zone_rst[] > 0, 1, NA)
 flood_zone_vct <- as.polygons(flood_zone_rst, values=FALSE, na.rm=TRUE)
