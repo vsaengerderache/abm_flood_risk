@@ -1,7 +1,7 @@
 # ..................................................................................................
 # Proyecto de sociohidrologia de inundaciones
 # Autor: Jorge Hurtado & Vicente Saengner
-# Fecha: 09 de septiembre de 2024
+# Fecha: 12 de septiembre de 2024
 #
 # Objetivos: 1) Modelo de desarrollo de viviendas (se incorpora una flood_zone para seleccionar hogares en la zona de riesgo).
 #            2) Modelo de reduccion de vulnerabilidad.
