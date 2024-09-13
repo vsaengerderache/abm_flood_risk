@@ -48,8 +48,7 @@ library(gifski)
 
 # set up ----
 
-setwd("C:/010_r/project_sociohydro_abm_flood_risk_r_model_integrated") # working directory
-#setwd("C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/") # working directory
+#setwd("C:/010_r/project_sociohydro_abm_flood_risk_r_model_integrated") # working directory
 
 # series de caudal maximo anual ---
 
@@ -88,12 +87,8 @@ floodserie <- map(serie, function(x) {
   return(floodserie)
 }
 
-floodserie_sp <- load_flood_raster_list(serie, "Rcode_Resampling/OutputResampling/RasterDepth_SinProy10m_v1") # Load raster sin proyecto
-floodserie_cp <- load_flood_raster_list(serie, "Rcode_Resampling/OutputResampling/RasterDepth_ConProy10m_v3") # Load raster con proyecto
-
-#floodserie_sp <- load_flood_raster_list(serie, "C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1") # Load raster sin proyecto
-#floodserie_cp <- load_flood_raster_list(serie, "C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_Resampling/OutputsResampling/RasterDepth_ConProy10m_v3") # Load raster con proyecto
-
+floodserie_sp <- load_flood_raster_list(serie, "Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1") # Load raster sin proyecto
+floodserie_cp <- load_flood_raster_list(serie, "Rcode_Resampling/OutputsResampling/RasterDepth_ConProy10m_v3") # Load raster con proyecto
 
 # study area
 
@@ -106,8 +101,7 @@ development_initial <- terra::aggregate(buffer(area_urban, 0)) ; #plot(developme
 # flood zone
 
 {
-flood_zone_rst <- load_flood_raster_list(100, "Rcode_Resampling/OutputResampling/RasterDepth_SinProy10m_v1")
-#flood_zone_rst <- load_flood_raster_list(100, "C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1")
+flood_zone_rst <- load_flood_raster_list(100, "Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1")
 flood_zone_rst <- flood_zone_rst[[1]]
 flood_zone_rst[] <- ifelse(flood_zone_rst[] > 0, 1, NA)
 flood_zone_vct <- as.polygons(flood_zone_rst, values=FALSE, na.rm=TRUE)
@@ -511,7 +505,7 @@ animate_abm(test1$list_hog_inter)
 #n <- 30; h <- 500; m <- 100; b <- 10 ; ua_1 <- 0.7; ua_2 <- 100 ; f <- 0.5 ; ap <- 0.3 ; r <- 7 
 pma <- c(0.7, 0.1, 0.1, 0.1)
 
-test2 <- model_integrated(development_initial, n, h, m, b, pma, ua_1, ua_2, f, ap, r)
+test2 <- model_integrated(output_type = "hog_flooded_per_year",development_initial, n, h, m, b, pma, ua_1, ua_2, f, ap, r)
 lines(seq(1:n), test2, type = "l", xlab = "Años", ylab = "% hogares afectados", ylim = c(0, 100), col = "blue")
 
 # test 3
@@ -519,5 +513,5 @@ lines(seq(1:n), test2, type = "l", xlab = "Años", ylab = "% hogares afectados",
 #n <- 30; h <- 500; m <- 100; b <- 10 ; ua_1 <- 0.7; ua_2 <- 100 ; f <- 0.5 ; ap <- 0.3 ; r <- 7 
 pma <- c(0.1, 0.1, 0.1, 0.7)
 
-test3 <- model_integrated(development_initial, n, h, m, b, pma, ua_1, ua_2, f, ap, r)
+test3 <- model_integrated(output_type = "hog_flooded_per_year",development_initial, n, h, m, b, pma, ua_1, ua_2, f, ap, r)
 lines(seq(1:n), test3, type = "l", xlab = "Años", ylab = "% hogares afectados", ylim = c(0, 100), col = "black")
