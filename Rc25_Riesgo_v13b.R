@@ -81,8 +81,8 @@ floodserie <- map(serie, function(x) {
   return(floodserie)
 }
 
-floodserie_sp <- load_flood_raster_list(serie, "Rcode_Resampling/Rc4_outputs/RasterDepth_SinProy10m_v1") # Load raster sin proyecto
-floodserie_cp <- load_flood_raster_list(serie, "Rcode_Resampling/Rc4_outputs/RasterDepth_ConProy10m_v3") # Load raster con proyecto
+floodserie_sp <- load_flood_raster_list(serie, "Rcode_Resampling/outputs_resampling/RasterDepth_SinProy10m_v1") # Load raster sin proyecto
+floodserie_cp <- load_flood_raster_list(serie, "Rcode_Resampling/outputs_resampling/RasterDepth_ConProy10m_v3") # Load raster con proyecto
 
 # study area
 
@@ -95,7 +95,7 @@ development_initial <- terra::aggregate(buffer(area_urban, 0)) ; #plot(developme
 # flood zone
 
 {
-flood_zone_rst <- load_flood_raster_list(100, "Rcode_Resampling/Rc4_outputs/RasterDepth_SinProy10m_v1")
+flood_zone_rst <- load_flood_raster_list(100, "Rcode_Resampling/outputs_resampling/RasterDepth_SinProy10m_v1")
 flood_zone_rst <- flood_zone_rst[[1]]
 flood_zone_rst[] <- ifelse(flood_zone_rst[] > 0, 1, NA)
 flood_zone_vct <- as.polygons(flood_zone_rst, values=FALSE, na.rm=TRUE)
