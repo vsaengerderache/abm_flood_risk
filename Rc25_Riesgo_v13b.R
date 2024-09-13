@@ -46,7 +46,7 @@ library(furrr)
 
 # series de caudal maximo anual ----
 
-serie <- read.csv("C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_SeriesHidromet/Rc3_outputs/serie30years.csv", header = TRUE)
+serie <- read.csv("Rcode_SeriesHidromet/Rc3_outputs/serie30years.csv", header = TRUE)
 serie <- c(serie$qtr)
 
 barplot(serie, main="Retorno QMA")
@@ -81,21 +81,21 @@ floodserie <- map(serie, function(x) {
   return(floodserie)
 }
 
-floodserie_sp <- load_flood_raster_list(serie, "C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1") # Load raster sin proyecto
-floodserie_cp <- load_flood_raster_list(serie, "C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_Resampling/OutputsResampling/RasterDepth_ConProy10m_v3") # Load raster con proyecto
+floodserie_sp <- load_flood_raster_list(serie, "Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1") # Load raster sin proyecto
+floodserie_cp <- load_flood_raster_list(serie, "Rcode_Resampling/OutputsResampling/RasterDepth_ConProy10m_v3") # Load raster con proyecto
 
 # study area
 
 # poligonos de uso de suelo
-area_urban <- terra::vect("C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_AreasDesarrollo/model_development3/urban3.shp")
-area_development <-  terra::vect("C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_AreasDesarrollo/model_development3/development3.shp")
+area_urban <- terra::vect("Rcode_AreasDesarrollo/model_development3/urban3.shp")
+area_development <-  terra::vect("Rcode_AreasDesarrollo/model_development3/development3.shp")
 
 development_initial <- terra::aggregate(buffer(area_urban, 0)) ; #plot(development_initial)
 
 # flood zone
 
 {
-flood_zone_rst <- load_flood_raster_list(100, "C:/JorgeR/SocioHidrologiaUdeC/AgentBasedModelling/Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1")
+flood_zone_rst <- load_flood_raster_list(100, "Rcode_Resampling/OutputsResampling/RasterDepth_SinProy10m_v1")
 flood_zone_rst <- flood_zone_rst[[1]]
 flood_zone_rst[] <- ifelse(flood_zone_rst[] > 0, 1, NA)
 flood_zone_vct <- as.polygons(flood_zone_rst, values=FALSE, na.rm=TRUE)
