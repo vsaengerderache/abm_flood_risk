@@ -269,9 +269,6 @@ model_risk_2 <- function(list_hog_model_vulnerability_hazard, ua_1, f, ap) {
   
   # incorporates learning
   
-  # agregar aqui: si la lista no esta vacia ejecutar learning caso devolver lista vacia
-  # nota esta parte es necesaria porque si pma tiene una fraccion pequeña y h y m son pequeños pueden devolver listas vacias para algun ma, esta lista vacia no ejecuta los modelos de riesgo de esta parte
-  
   list_hog_risk2 <- list_hog_risk2 #??
   for (i in 2:n) {
     list_hog_risk2[[i]]$hog_exist <- rep(FALSE, nrow(list_hog_risk2[[i]])) 
