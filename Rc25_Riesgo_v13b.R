@@ -1,6 +1,6 @@
 # ..................................................................................................
 # Proyecto de sociohidrologia de inundaciones
-# Autor: Jorge Hurtado & Vicente Saengner
+# Autor: Jorge Hurtado & Vicente Saenger
 # Fecha: 12 de septiembre de 2024
 #
 # Objetivos: 1) Modelo de desarrollo de viviendas (se incorpora una flood_zone para seleccionar hogares en la zona de riesgo).
@@ -17,7 +17,7 @@
 #        3) Para el mismo hogar se mantenie vc durante los periodos y se actualiza segun el modelo de aprendizaje.
 #        4) Los escenarios de reduccion de amenaza son los raster CON proyecto (v3:modelacion en iber con defensas fluviales para Tr10). 
 #        5) Zonas urbanas (urb) y de desarrollo (development area) obtenidos del uso de suelo 2015. Flood_zone es el flood map tr100.
-#        6) Serie de QMA (Tr) obtenidos de caudales diarios (1979-1983) de DGA (cr2-camels). La serie que usa es temporal hasta definir la final.
+#        6) Serie de QMA (Tr) obtenidos de caudales diarios (1970-1983) de DGA (cr2-camels). La serie que usa es temporal hasta definir la final.
 #        7) Cambios respecto a la version anterior: 
 #           I) se ajusta el area de los hogares con flood_zone; 
 #           II) no se usa el escenario con proyecto (reduccion de amenaza); 
